@@ -10,11 +10,10 @@ class Timer extends Component {
         color: '#'+Math.floor(Math.random()*16777215).toString(16),
     }
   }
-
-
-
   //Your code here
-
+  componentDidUpdate(){
+    this.timer.current.style.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
+  }
 
 
   componentDidMount() {
@@ -23,6 +22,14 @@ class Timer extends Component {
 
   componentWillUnmount() {
     clearInterval(this.interval)
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if (this.state.time === nextState.time){
+      return false
+    }else{
+      return true
+    }
   }
 
   render() {
